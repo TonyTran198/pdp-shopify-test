@@ -105,13 +105,36 @@
                 </p>
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
+                  <h1 class="h3">{{ product.title | escape }}</h1>
                   <a href="{{ product.url }}" class="product__title">
                     <h2 class="h1">
                       {{ product.title | escape }}
                     </h2>
                   </a>
                 </div>
+              {%- when 'product_benefits' -%}
+                {%- if block.settings.benefit_1_label != blank or block.settings.benefit_2_label != blank or block.settings.benefit_3_label != blank -%}
+                  <ul
+                    class="product__benefits"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if block.settings.benefit_1_label != blank -%}
+                      <li class="product__benefit"  style="background-color: {{ block.settings.benefit_bg_color }}; color: {{ block.settings.benefit_text_color }};">
+                        <div class="product__benefit-label">{{ block.settings.benefit_1_label }}</div>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.benefit_2_label != blank -%}
+                      <li class="product__benefit" style="background-color: {{ block.settings.benefit_bg_color }}; color: {{ block.settings.benefit_text_color }};">
+                        <div class="product__benefit-label">{{ block.settings.benefit_2_label }}</div>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.benefit_3_label != blank -%}
+                      <li class="product__benefit" style="background-color: {{ block.settings.benefit_bg_color }}; color: {{ block.settings.benefit_text_color }};">
+                        <div class="product__benefit-label">{{ block.settings.benefit_3_label }}</div>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+                {%- endif -%}
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
@@ -790,6 +813,55 @@
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
       "limit": 1
+    },
+    {
+      "type": "product_benefits",
+      "name": "Product benefits",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color",
+          "id": "benefit_bg_color",
+          "label": "Background color",
+          "default": "#e9dbc0"
+        },
+        {
+          "type": "color",
+          "id": "benefit_text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Benefit 1"
+        },
+        {
+          "type": "text",
+          "id": "benefit_1_label",
+          "label": "Label",
+          "default": "Strengthens"
+        },
+        {
+          "type": "header",
+          "content": "Benefit 2"
+        },
+        {
+          "type": "text",
+          "id": "benefit_2_label",
+          "label": "Label",
+          "default": "Moisturizes"
+        },
+        {
+          "type": "header",
+          "content": "Benefit 3"
+        },
+        {
+          "type": "text",
+          "id": "benefit_3_label",
+          "label": "Label",
+          "default": "Hydrates"
+        }
+      ]
     },
     {
       "type": "price",
