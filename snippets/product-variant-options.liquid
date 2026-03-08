@@ -59,6 +59,16 @@
   {%- endcapture -%}
 
   {% assign escaped_value = value | escape %}
+  {% assign display_value = value %}
+  {%- if product.options.size == 1 -%}
+    {%- liquid
+      assign matching_variant = product.variants | where: 'option1', value | first
+      if matching_variant != blank and matching_variant.title != blank
+        assign display_value = matching_variant.title | split: '/' | first | replace: ':', ' -' | strip
+      endif
+    -%}
+  {%- endif -%}
+  {% assign escaped_display_value = display_value | escape %}
 
   {%- if picker_type == 'swatch' -%}
     {%- capture help_text -%}
@@ -94,8 +104,8 @@
       {% endif %}
       {{ input_dataset }}
     >
-    <label for="{{ input_id }}">
-      {{ value -}}
+    <label for="{{ input_id }}" title="{{ escaped_display_value }}">
+      {{ display_value -}}
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
@@ -114,9 +124,9 @@
       {{ input_dataset }}
     >
       {% if option_disabled -%}
-        {{- 'products.product.value_unavailable' | t: option_value: value -}}
+        {{- 'products.product.value_unavailable' | t: option_value: display_value -}}
       {%- else -%}
-        {{- value -}}
+        {{- display_value -}}
       {%- endif %}
     </option>
   {%- endif -%}
