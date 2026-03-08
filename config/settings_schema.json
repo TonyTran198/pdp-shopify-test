@@ -18,10 +18,10 @@
       {
         "type": "range",
         "id": "logo_width",
-        "min": 50,
-        "max": 300,
-        "step": 10,
-        "default": 100,
+        "min": 100,
+        "max": 400,
+        "step": 4, 
+        "default": 200,
         "unit": "px",
         "label": "t:settings_schema.logo.settings.logo_width.label"
       },
@@ -143,6 +143,143 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Custom fonts"
+      },
+      {
+        "type": "paragraph",
+        "content": "Upload .woff or .woff2 font files to Assets, then enter the exact file name below."
+      },
+      {
+        "type": "header",
+        "content": "Custom body font"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_body_font",
+        "label": "Use custom body font",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "custom_body_font_family",
+        "label": "Body font family name",
+        "default": "Sofia Pro"
+      },
+      {
+        "type": "text",
+        "id": "custom_body_font_file",
+        "label": "Body regular font file name"
+      },
+      {
+        "type": "select",
+        "id": "custom_body_font_weight",
+        "label": "Body regular font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "custom_body_font_semibold_family",
+        "label": "Body semibold family name (optional)",
+        "default": "Sofia Pro Semibold"
+      },
+      {
+        "type": "text",
+        "id": "custom_body_font_semibold_file",
+        "label": "Body semibold font file name"
+      },
+      {
+        "type": "select",
+        "id": "custom_body_font_semibold_weight",
+        "label": "Body semibold font weight",
+        "default": "600",
+        "options": [
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Custom heading font"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_heading_font",
+        "label": "Use custom heading font",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "custom_heading_font_family",
+        "label": "Heading font family name",
+        "default": "Quincy CF"
+      },
+      {
+        "type": "text",
+        "id": "custom_heading_font_file",
+        "label": "Heading font file name"
+      },
+      {
+        "type": "select",
+        "id": "custom_heading_font_weight", 
+        "label": "Heading font weight",
+        "default": "800",
+        "options": [
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          }
+        ]
       }
     ]
   },
@@ -152,10 +289,10 @@
       {
         "type": "range",
         "id": "page_width",
-        "min": 1000,
-        "max": 1600,
-        "step": 100,
-        "default": 1200,
+        "min": 1080,
+        "max": 2000,
+        "step": 10,
+        "default": 1760,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.page_width.label"
       },

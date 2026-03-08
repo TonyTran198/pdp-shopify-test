@@ -40,19 +40,90 @@
     {%- endif -%}
 
     {{ content_for_header }}
-
+ 
     {%- liquid
+      assign use_custom_body_font = false
+      if settings.enable_custom_body_font and settings.custom_body_font_family != blank and settings.custom_body_font_file != blank
+        assign use_custom_body_font = true
+      endif
+
+      assign custom_body_font_format = 'woff2'
+      if settings.custom_body_font_file contains '.woff2'
+        assign custom_body_font_format = 'woff2'
+      elsif settings.custom_body_font_file contains '.woff'
+        assign custom_body_font_format = 'woff'
+      endif
+
+      assign use_custom_body_semibold_font = false
+      if use_custom_body_font and settings.custom_body_font_semibold_file != blank
+        assign use_custom_body_semibold_font = true
+      endif
+
+      assign custom_body_semibold_family = settings.custom_body_font_family
+      if settings.custom_body_font_semibold_family != blank
+        assign custom_body_semibold_family = settings.custom_body_font_semibold_family
+      endif
+
+      assign custom_body_semibold_font_format = 'woff2'
+      if settings.custom_body_font_semibold_file contains '.woff2'
+        assign custom_body_semibold_font_format = 'woff2'
+      elsif settings.custom_body_font_semibold_file contains '.woff'
+        assign custom_body_semibold_font_format = 'woff'
+      endif
+
+      assign use_custom_heading_font = false
+      if settings.enable_custom_heading_font and settings.custom_heading_font_family != blank and settings.custom_heading_font_file != blank
+        assign use_custom_heading_font = true
+      endif
+
+      assign custom_heading_font_format = 'woff2'
+      if settings.custom_heading_font_file contains '.woff2'
+        assign custom_heading_font_format = 'woff2'
+      elsif settings.custom_heading_font_file contains '.woff'
+        assign custom_heading_font_format = 'woff'
+      endif
+
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
       assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
     %}
 
     {% style %}
-      {{ settings.type_body_font | font_face: font_display: 'swap' }}
-      {{ body_font_bold | font_face: font_display: 'swap' }}
-      {{ body_font_italic | font_face: font_display: 'swap' }}
-      {{ body_font_bold_italic | font_face: font_display: 'swap' }}
-      {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      {% if use_custom_body_font %}
+        @font-face {
+          font-family: '{{ settings.custom_body_font_family | escape }}';
+          src: url('{{ settings.custom_body_font_file | asset_url }}') format('{{ custom_body_font_format }}');
+          font-weight: {{ settings.custom_body_font_weight }};
+          font-style: normal;
+          font-display: swap;
+        }
+        {% if use_custom_body_semibold_font %}
+          @font-face {
+            font-family: '{{ custom_body_semibold_family | escape }}';
+            src: url('{{ settings.custom_body_font_semibold_file | asset_url }}') format('{{ custom_body_semibold_font_format }}');
+            font-weight: {{ settings.custom_body_font_semibold_weight }};
+            font-style: normal;
+            font-display: swap;
+          }
+        {% endif %}
+      {% else %}
+        {{ settings.type_body_font | font_face: font_display: 'swap' }}
+        {{ body_font_bold | font_face: font_display: 'swap' }}
+        {{ body_font_italic | font_face: font_display: 'swap' }}
+        {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+      {% endif %}
+
+      {% if use_custom_heading_font %}
+        @font-face {
+          font-family: '{{ settings.custom_heading_font_family | escape }}';
+          src: url('{{ settings.custom_heading_font_file | asset_url }}') format('{{ custom_heading_font_format }}');
+          font-weight: {{ settings.custom_heading_font_weight }};
+          font-style: normal;
+          font-display: swap;
+        }
+      {% else %}
+        {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      {% endif %}
 
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
@@ -95,19 +166,20 @@
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75);
+        color: rgb(var(--color-foreground));
         background-color: rgb(var(--color-background));
       }
 
       :root {
-        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
-        --font-body-style: {{ settings.type_body_font.style }};
-        --font-body-weight: {{ settings.type_body_font.weight }};
-        --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+        --font-body-family: {% if use_custom_body_font %}'{{ settings.custom_body_font_family | escape }}', {{ settings.type_body_font.fallback_families }}{% else %}{{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}{% endif %};
+        --font-body-semibold-family: {% if use_custom_body_semibold_font %}'{{ custom_body_semibold_family | escape }}', {{ settings.type_body_font.fallback_families }}{% elsif use_custom_body_font %}'{{ settings.custom_body_font_family | escape }}', {{ settings.type_body_font.fallback_families }}{% else %}{{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}{% endif %};
+        --font-body-style: {% if use_custom_body_font %}normal{% else %}{{ settings.type_body_font.style }}{% endif %};
+        --font-body-weight: {% if use_custom_body_font %}{{ settings.custom_body_font_weight }}{% else %}{{ settings.type_body_font.weight }}{% endif %};
+        --font-body-weight-bold: {% if use_custom_body_semibold_font %}{{ settings.custom_body_font_semibold_weight }}{% elsif use_custom_body_font %}{{ settings.custom_body_font_weight | plus: 300 | at_most: 900 }}{% else %}{{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }}{% endif %};
 
-        --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
-        --font-heading-style: {{ settings.type_header_font.style }};
-        --font-heading-weight: {{ settings.type_header_font.weight }};
+        --font-heading-family: {% if use_custom_heading_font %}'{{ settings.custom_heading_font_family | escape }}', {{ settings.type_header_font.fallback_families }}{% else %}{{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }}{% endif %};
+        --font-heading-style: {% if use_custom_heading_font %}normal{% else %}{{ settings.type_header_font.style }}{% endif %};
+        --font-heading-weight: {% if use_custom_heading_font %}{{ settings.custom_heading_font_weight }}{% else %}{{ settings.type_header_font.weight }}{% endif %};
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -240,9 +312,8 @@
         grid-template-columns: 100%;
         min-height: 100%;
         margin: 0;
-        font-size: 1.5rem;
-        letter-spacing: 0.06rem;
-        line-height: calc(1 + 0.8 / var(--font-body-scale));
+        font-size: 1.4rem;
+        line-height: 2.2rem;
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
@@ -266,16 +337,33 @@
       {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
-    {%- unless settings.type_body_font.system? -%}
+    {%- if use_custom_body_font -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ settings.custom_body_font_file | asset_url }}" type="font/{{ custom_body_font_format }}" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
-    {%- unless settings.type_header_font.system? -%}
+      {%- if use_custom_body_semibold_font -%}
+        {% comment %}theme-check-disable AssetPreload{% endcomment %}
+        <link rel="preload" as="font" href="{{ settings.custom_body_font_semibold_file | asset_url }}" type="font/{{ custom_body_semibold_font_format }}" crossorigin>
+        {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- endif -%}
+    {%- else -%}
+      {%- unless settings.type_body_font.system? -%}
+        {% comment %}theme-check-disable AssetPreload{% endcomment %}
+        <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+        {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- endunless -%}
+    {%- endif -%}
+    {%- if use_custom_heading_font -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+      <link rel="preload" as="font" href="{{ settings.custom_heading_font_file | asset_url }}" type="font/{{ custom_heading_font_format }}" crossorigin>
       {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- endunless -%}
+    {%- else -%}
+      {%- unless settings.type_header_font.system? -%}
+        {% comment %}theme-check-disable AssetPreload{% endcomment %}
+        <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+        {% comment %}theme-check-enable AssetPreload{% endcomment %}
+      {%- endunless -%}
+    {%- endif -%}
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
