@@ -499,6 +499,32 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+
+                {%- when 'product_usps' -%}
+                  <div class="product__usps" {{ block.shopify_attributes }}>
+                    {%- for i in (1..3) -%}
+                      {%- liquid
+                        assign image_key = 'usp_image_' | append: i
+                        assign title_key = 'usp_title_' | append: i
+                        assign usp_image = block.settings[image_key]
+                        assign usp_title = block.settings[title_key]
+                      -%}
+                      {%- if usp_image != blank or usp_title != blank -%}
+                        <div
+                          class="product__usp"
+                          style="
+                            {% if usp_image != blank %}
+                              --usp-icon-url: url('{{ usp_image | image_url: width: 64 }}');
+                              --usp-icon-aspect-ratio: {{ usp_image.aspect_ratio | default: 1 }};
+                            {% endif %}
+                          "
+                        >
+                          <div class="product__usp-icon"></div>
+                          <div class="product__usp-title">{{ usp_title }}</div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -1970,6 +1996,58 @@
           "default": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.default",
           "label": "t:sections.main-product.blocks.icon_with_text.settings.heading_3.label",
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
+        }
+      ]
+    },
+
+    {
+      "type": "product_usps",
+      "name": "Product USPs",
+      "settings": [
+        {
+          "type": "header",
+          "content": "USP item 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "usp_image_1",
+          "label": "Icon 1"
+        },
+        {
+          "type": "text",
+          "id": "usp_title_1",
+          "label": "Title 1",
+          "default": "FREE US Shipping +$50"
+        },
+        {
+          "type": "header",
+          "content": "USP item 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "usp_image_2",
+          "label": "Icon 2"
+        },
+        {
+          "type": "text",
+          "id": "usp_title_2",
+          "label": "Title 2",
+          "default": "Vegan & Cruelty Free"
+        },
+        {
+          "type": "header",
+          "content": "USP item 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "usp_image_3",
+          "label": "Icon 3"
+        },
+        {
+          "type": "text",
+          "id": "usp_title_3",
+          "label": "Title 3",
+          "default": "FREE Samples"
         }
       ]
     }

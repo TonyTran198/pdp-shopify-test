@@ -1816,3 +1816,61 @@ li.product__benefit {
     border: none;
   }
 }
+
+/* USPs Block */
+.product__usps {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 1.4rem;
+  margin-top: 1.4rem;
+  row-gap: 1.6rem
+}
+
+@media screen and (min-width: 1025px) {
+  .product__usps {
+      flex-direction:row
+  }
+}
+
+.product__usp {
+  align-items: center;
+  color: var(--color-foreground);
+  display: flex;
+  font-family: var(--font-body-semibold-family);
+  gap: 0.8rem
+}
+
+@media screen and (min-width: 1025px) {
+  .product__usp {
+      padding-right:16px;
+      width: 33.333%
+  }
+}
+
+.product__usp-icon {
+  aspect-ratio: var(--usp-icon-aspect-ratio);
+  background-image: var(--usp-icon-url);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+  width: 3.2rem
+}
+
+.product__usp--icon-colour-override .product__usp-icon {
+  background-image: none;
+  -webkit-mask-image: var(--usp-icon-url);
+  mask-image: var(--usp-icon-url);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain
+}
+
+.product__usp-title {
+  padding-top: .33em
+}
+
