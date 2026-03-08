@@ -230,7 +230,6 @@ product-info {
   max-width: 100%;
 }
 
-.product__info-container .product-form,
 .product__info-container .product__description,
 .product__info-container .icon-with-text {
   margin: 2.5rem 0;
@@ -373,7 +372,7 @@ a.product__text {
   background-color: #f9423a;
   height: 4.8rem;
   border: 0;
-  padding: 0 4.4rem;
+  padding: 0 1.2rem;
   text-transform: uppercase;
 }
 
