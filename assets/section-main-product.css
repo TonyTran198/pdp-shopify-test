@@ -1732,6 +1732,45 @@ li.product__benefit {
   display: none;
 }
 
+.afterpay-fixed-message {
+  align-items: center;
+  display: flex;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  line-height: 1.4;
+}
+
+.afterpay-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.afterpay-fixed-message strong {
+  font-family: var(--font-body-bold-family);
+}
+
+.afterpay-fixed-message__badge {
+  border-radius: 0.3rem;
+  font-weight: 600;
+  padding: 0.1rem 0.6rem;
+}
+
+.afterpay-fixed-message__info {
+  align-items: center;
+  border: 0.1rem solid #1f1f1f;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 1.4rem;
+  justify-content: center;
+  line-height: 1;
+  width: 1.4rem;
+}
+
 .recipient-fields hr {
   margin: 1.6rem auto;
 }

@@ -71,6 +71,23 @@
         assign custom_body_semibold_font_format = 'woff'
       endif
 
+      assign use_custom_body_bold_font = false
+      if use_custom_body_font and settings.custom_body_font_bold_file != blank
+        assign use_custom_body_bold_font = true
+      endif
+
+      assign custom_body_bold_family = settings.custom_body_font_family
+      if settings.custom_body_font_bold_family != blank
+        assign custom_body_bold_family = settings.custom_body_font_bold_family
+      endif
+
+      assign custom_body_bold_font_format = 'woff2'
+      if settings.custom_body_font_bold_file contains '.woff2'
+        assign custom_body_bold_font_format = 'woff2'
+      elsif settings.custom_body_font_bold_file contains '.woff'
+        assign custom_body_bold_font_format = 'woff'
+      endif
+
       assign use_custom_heading_font = false
       if settings.enable_custom_heading_font and settings.custom_heading_font_family != blank and settings.custom_heading_font_file != blank
         assign use_custom_heading_font = true
@@ -99,9 +116,18 @@
         }
         {% if use_custom_body_semibold_font %}
           @font-face {
-            font-family: '{{ custom_body_semibold_family | escape }}';
+            font-family: '{{ settings.custom_body_font_semibold_family | escape }}';
             src: url('{{ settings.custom_body_font_semibold_file | asset_url }}') format('{{ custom_body_semibold_font_format }}');
             font-weight: {{ settings.custom_body_font_semibold_weight }};
+            font-style: normal;
+            font-display: swap;
+          }
+        {% endif %}
+        {% if use_custom_body_bold_font %}
+          @font-face {
+            font-family: '{{ custom_body_bold_family | escape }}';
+            src: url('{{ settings.custom_body_font_bold_file | asset_url }}') format('{{ custom_body_bold_font_format }}');
+            font-weight: {{ settings.custom_body_font_bold_weight }};
             font-style: normal;
             font-display: swap;
           }
@@ -173,6 +199,7 @@
       :root {
         --font-body-family: {% if use_custom_body_font %}'{{ settings.custom_body_font_family | escape }}', {{ settings.type_body_font.fallback_families }}{% else %}{{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}{% endif %};
         --font-body-semibold-family: {% if use_custom_body_semibold_font %}'{{ custom_body_semibold_family | escape }}', {{ settings.type_body_font.fallback_families }}{% elsif use_custom_body_font %}'{{ settings.custom_body_font_family | escape }}', {{ settings.type_body_font.fallback_families }}{% else %}{{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}{% endif %};
+        --font-body-bold-family: {% if use_custom_body_bold_font %}'{{ custom_body_bold_family | escape }}', {{ settings.type_body_font.fallback_families }}{% elsif use_custom_body_font %}'{{ settings.custom_body_font_family | escape }}', {{ settings.type_body_font.fallback_families }}{% else %}{{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }}{% endif %};
         --font-body-style: {% if use_custom_body_font %}normal{% else %}{{ settings.type_body_font.style }}{% endif %};
         --font-body-weight: {% if use_custom_body_font %}{{ settings.custom_body_font_weight }}{% else %}{{ settings.type_body_font.weight }}{% endif %};
         --font-body-weight-bold: {% if use_custom_body_semibold_font %}{{ settings.custom_body_font_semibold_weight }}{% elsif use_custom_body_font %}{{ settings.custom_body_font_weight | plus: 300 | at_most: 900 }}{% else %}{{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }}{% endif %};

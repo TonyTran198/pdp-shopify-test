@@ -233,6 +233,37 @@
         ]
       },
       {
+        "type": "text",
+        "id": "custom_body_font_bold_family",
+        "label": "Body bold family name (optional)",
+        "default": "Sofia Pro Bold"
+      },
+      {
+        "type": "text",
+        "id": "custom_body_font_bold_file",
+        "label": "Body bold font file name"
+      },
+      {
+        "type": "select",
+        "id": "custom_body_font_bold_weight",
+        "label": "Body bold font weight",
+        "default": "700",
+        "options": [
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          }
+        ]
+      },
+      {
         "type": "header",
         "content": "Custom heading font"
       },
