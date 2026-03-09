@@ -48,6 +48,12 @@
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
+  {%- liquid
+    assign has_subscription_ui_block = section.blocks | where: 'type', 'subscription_ui' | size
+  -%}
+  {%- if has_subscription_ui_block > 0 -%}
+    <script src="{{ 'product-subscription-ui.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 
   {% if section.settings.image_zoom == 'hover' %}
     <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
@@ -174,6 +180,12 @@
                 {% render 'afterpay-fixed-message', shopify_attributes: block.shopify_attributes %}
               {%- when 'upsell_combo_demo' -%}
                 {% render 'product-upsell-combo-ui', product: product, shopify_attributes: block.shopify_attributes %}
+              {%- when 'subscription_ui' -%}
+                {% render 'product-subscription-ui',
+                  section: section,
+                  block_id: block.id,
+                  shopify_attributes: block.shopify_attributes
+                %}
               {%- when 'inventory' -%}
                 <p
                   class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -715,6 +727,12 @@
     {
       "type": "upsell_combo_demo",
       "name": "Upsell combo UI",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "subscription_ui",
+      "name": "Subcription UI",
       "limit": 1,
       "settings": []
     },

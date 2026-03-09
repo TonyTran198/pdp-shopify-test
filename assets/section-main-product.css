@@ -1953,7 +1953,7 @@ li.product__benefit {
 
 .upsell-combo-ui__item {
   align-items: self-start;
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 1.6rem;
   display: flex;
   gap: 0.8rem;
@@ -2029,7 +2029,7 @@ li.product__benefit {
 
 .upsell-combo-ui__check {
   align-items: center;
-  color: #fff;
+  color: var(--color-white);
   display: inline-flex;
   font-size: 1.4rem;
   justify-content: center;
@@ -2111,7 +2111,7 @@ li.product__benefit {
   border-radius: 0.4rem;
   border: 1px solid #080a0c;
   cursor: pointer;
-  background-color: #fff;
+  background-color: var(--color-white);
   position: absolute;
   left: 0;
   top: 0;
@@ -2154,6 +2154,164 @@ li.product__benefit {
   }
 }
 
+.subscription-ui {
+  border-radius: 1.6rem;
+  display: grid;
+  margin-bottom: 1rem;
+  gap: 1.4rem;
+}
+
+.subscription-ui__option-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: 0.1rem solid color(srgb 0.5 0.5 0.5);
+  border-radius: 1.6rem;
+  cursor: pointer;
+  font: inherit;
+  justify-content: space-between;
+  min-height: 5.2rem;
+  padding: 12px 20px 12px 20px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.subscription-ui__option--one-time.is-active,
+.subscription-ui__option--subscribe.is-active {
+  background: var(--color-white);
+}
+
+.subscription-ui__option--subscribe {
+  border: 0.1rem solid rgba(18, 18, 18, 0.45);
+  border-radius: 1.6rem;
+}
+
+.subscription-ui__option--subscribe .subscription-ui__option-button {
+  padding: 1.2rem 2rem 0.8rem 2rem;
+  }
+
+.subscription-ui__option--subscribe .subscription-ui__option-button {
+  border: 0;
+  border-radius: 0;
+}
+
+.subscription-ui__radio {
+  border: 0.1rem solid rgba(18, 18, 18, 0.45);
+  border-radius: 50%;
+  flex: 0 0 2rem;
+  height: 2rem;
+  margin-right: 0.8rem;
+  position: relative;
+  width: 2rem;
+}
+
+.subscription-ui__radio.is-active::after {
+  background: var(--color-black);
+  border-radius: 50%;
+  content: "";
+  height: 1rem;
+  left: 0.4rem;
+  position: absolute;
+  top: 0.4rem;
+  width: 1rem;
+}
+
+.subscription-ui__label {
+  flex: 1;
+  font-size: 1.75rem;
+  font-family: var(--font-body-semibold-family);
+  line-height: 2.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.subscription-ui__price {
+  font-size: 1.4rem;
+  font-family: var(--font-body-semibold-family);
+}
+
+.subscription-ui__info-icon {
+  margin-left: 0.5rem;
+  display: flex;
+}
+
+.subscription-ui__badge {
+  background: #f44c38;
+  color: var(--color-white);
+  position: absolute;
+  right: .8rem;
+  position: absolute;
+  top: -1em;
+  right: 1em;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  border-radius: 1.6rem;
+  padding: 0.5rem;
+  top: -1rem;
+}
+
+.subscription-ui__content {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem 2rem;
+}
+
+.subscription-ui__content.is-hidden {
+  display: none;
+}
+
+.subscription-ui__benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1rem;
+}
+
+.subscription-ui__benefits li {
+  align-items: center;
+  display: flex;
+  font-size: 1.4rem;
+  gap: .6rem;
+  margin: .5rem 0;
+  padding-left: 1.75em;
+  position: relative;
+}
+
+.subscription-ui__benefits li::before {
+    content: '';
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    top: 0.25em;
+    left: 0;
+    mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEwLjkyMTUgMTQuNzExNUwxNS42MDc0IDEwLjA0NjVMMTQuODMzNCA5LjI3MjQ2TDEwLjkyMTUgMTMuMTYzNUw5LjE1MDcxIDExLjQxMzVMOC4zNzY2OSAxMi4xODc1TDEwLjkyMTUgMTQuNzExNVpNMTIuMDAxNSAxOS41ODMzQzEwLjk2MjEgMTkuNTgzMyA5Ljk4MTQ4IDE5LjM4NiA5LjA1OTcxIDE4Ljk5MTJDOC4xMzc5MiAxOC41OTY1IDcuMzMxMSAxOC4wNTM0IDYuNjM5MjUgMTcuMzYxOUM1Ljk0NzM5IDE2LjY3MDMgNS40MDQwMSAxNS44NjM5IDUuMDA5MSAxNC45NDI1QzQuNjE0MiAxNC4wMjEyIDQuNDE2NzUgMTMuMDQwOCA0LjQxNjc1IDEyLjAwMTRDNC40MTY3NSAxMC45NDgxIDQuNjE0MTEgOS45NjQwNiA1LjAwODgzIDkuMDQ5MjNDNS40MDM1NSA4LjEzNDM4IDUuOTQ2NjggNy4zMzEwNCA2LjYzODIxIDYuNjM5MTlDNy4zMjk3NSA1Ljk0NzMzIDguMTM2MiA1LjQwMzk0IDkuMDU3NTYgNS4wMDkwNEM5Ljk3ODkxIDQuNjE0MTQgMTAuOTU5MyA0LjQxNjY5IDExLjk5ODcgNC40MTY2OUMxMy4wNTE5IDQuNDE2NjkgMTQuMDM2IDQuNjE0MDUgMTQuOTUwOCA1LjAwODc3QzE1Ljg2NTcgNS40MDM0OSAxNi42NjkgNS45NDY2MiAxNy4zNjA5IDYuNjM4MTVDMTguMDUyNyA3LjMyOTY5IDE4LjU5NjEgOC4xMzI2NyAxOC45OTEgOS4wNDcwOEMxOS4zODU5IDkuOTYxNDkgMTkuNTgzNCAxMC45NDUzIDE5LjU4MzQgMTEuOTk4NkMxOS41ODM0IDEzLjAzOCAxOS4zODYgMTQuMDE4NiAxOC45OTEzIDE0Ljk0MDRDMTguNTk2NiAxNS44NjIxIDE4LjA1MzQgMTYuNjY5IDE3LjM2MTkgMTcuMzYwOEMxNi42NzA0IDE4LjA1MjcgMTUuODY3NCAxOC41OTYxIDE0Ljk1MyAxOC45OTFDMTQuMDM4NiAxOS4zODU5IDEzLjA1NDcgMTkuNTgzMyAxMi4wMDE1IDE5LjU4MzNaTTEyLjAwMDEgMTguNUMxMy44MDU2IDE4LjUgMTUuMzQwMyAxNy44NjgxIDE2LjYwNDIgMTYuNjA0MkMxNy44NjgxIDE1LjM0MDMgMTguNTAwMSAxMy44MDU2IDE4LjUwMDEgMTJDMTguNTAwMSAxMC4xOTQ0IDE3Ljg2ODEgOC42NTk3MiAxNi42MDQyIDcuMzk1ODNDMTUuMzQwMyA2LjEzMTk0IDEzLjgwNTYgNS41IDEyLjAwMDEgNS41QzEwLjE5NDUgNS41IDguNjU5NzggNi4xMzE5NCA3LjM5NTg5IDcuMzk1ODNDNi4xMzIgOC42NTk3MiA1LjUwMDA2IDEwLjE5NDQgNS41MDAwNiAxMkM1LjUwMDA2IDEzLjgwNTYgNi4xMzIgMTUuMzQwMyA3LjM5NTg5IDE2LjYwNDJDOC42NTk3OCAxNy44NjgxIDEwLjE5NDUgMTguNSAxMi4wMDAxIDE4LjVaIiBmaWxsPSJjdXJyZW50Q29sb3IiPjwvcGF0aD48L3N2Zz4K);
+    mask-size: 140%;
+    background-color: var(--color-black);
+    mask-position: calc(-0.25em + 0.1rem) calc(-0.25em + 1px);
+}
+
+.subscription-ui__plans {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: auto;
+}
+
+.subscription-ui__plan {
+  font-family: var(--font-body-semibold-family);
+  background: #e5e5e5;
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  min-height: 3.5rem;
+}
+
+.subscription-ui__plan.is-active {
+  background: var(--color-black);
+  color: var(--color-white);
+}
 
 .recipient-fields hr {
   margin: 1.6rem auto;
