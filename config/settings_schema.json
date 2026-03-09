@@ -203,6 +203,45 @@
       },
       {
         "type": "text",
+        "id": "custom_body_font_secondary_family",
+        "label": "Body secondary regular family name (optional)",
+        "default": "Sofia Pro Alt"
+      },
+      {
+        "type": "text",
+        "id": "custom_body_font_secondary_file",
+        "label": "Body secondary regular font file name"
+      },
+      {
+        "type": "select",
+        "id": "custom_body_font_secondary_weight",
+        "label": "Body secondary regular font weight",
+        "default": "400",
+        "options": [
+          {
+            "value": "400",
+            "label": "400"
+          },
+          {
+            "value": "500",
+            "label": "500"
+          },
+          {
+            "value": "600",
+            "label": "600"
+          },
+          {
+            "value": "700",
+            "label": "700"
+          },
+          {
+            "value": "800",
+            "label": "800"
+          }
+        ]
+      },
+      {
+        "type": "text",
         "id": "custom_body_font_semibold_family",
         "label": "Body semibold family name (optional)",
         "default": "Sofia Pro Semibold"
