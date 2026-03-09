@@ -1,0 +1,74 @@
+<div class="upsell-combo-ui" {{ shopify_attributes }}>
+    <div class="upsell-combo-ui__title">Complete Your Ritual</div>
+
+    <div class="upsell-combo-ui__item">
+        <div class="upsell-combo-ui__media">
+            {{ product.featured_media | image_url: width: 140 | image_tag: loading: 'lazy', widths: '70, 100, 140',
+            class: 'upsell-combo-ui__image', alt: 'HoliRoots Hair Oil' }}
+        </div>
+        <div class="upsell-combo-ui__content">
+            <p class="upsell-combo-ui__name">HoliRoots™ Hair Oil</p>
+            <p class="upsell-combo-ui__price-line">
+                <span class="upsell-combo-ui__price">$34.20</span>
+                <span class="upsell-combo-ui__compare">$38.00</span>
+                <span class="upsell-combo-ui__discount">-10%</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="upsell-combo-ui__plus">
+        {{- 'icon-plus-v2.svg' | inline_asset_content -}}
+    </div>
+
+    <div class="upsell-combo-ui__item upsell-combo-ui__item--selected">
+        <div class="upsell-combo-ui__media">
+            {{ product.featured_media | image_url: width: 140 | image_tag: loading: 'lazy', widths: '70, 100, 140',
+            class: 'upsell-combo-ui__image', alt: 'MahaMane Smooth & Shine Hair Oil' }}
+        </div>
+        <div class="upsell-combo-ui__content">
+            <p class="upsell-combo-ui__name">MahaMane™ Smooth &amp; Shine Hair Oil</p>
+            <p class="upsell-combo-ui__price-line">
+                <span class="upsell-combo-ui__price">$34.20</span>
+                <span class="upsell-combo-ui__compare">$38.00</span>
+                <span class="upsell-combo-ui__discount">-10%</span>
+            </p>
+        </div>
+
+        <div class="upsell-combo-ui__check" aria-hidden="true">
+            <div class="upsell-combo-card-checkbox-cont">
+                <div class="upsell-combo-checkbox-cont">
+                    <input
+                        id="offer-7593419112642"
+                        aria-label="Checkbox"
+                        class="upsell-combo-card-checkbox"
+                        type="checkbox"
+                        checked
+                    />
+                    <div
+                        class="upsell-combo-custom-checkbox upsell-combo-checked"
+                    >
+                        <div class="upsell-combo-checkbox-check">
+                            <span> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="upsell-combo-ui__summary">
+        <div>
+            <p class="upsell-combo-ui__total-label">Total</p>
+            <p class="upsell-combo-ui__note">Discount auto applied</p>
+        </div>
+        <div class="upsell-combo-ui__totals">
+            <p class="upsell-combo-ui__price-line">
+                <span class="upsell-combo-ui__discount">-10%</span>
+                <span class="upsell-combo-ui__compare">$76.00</span>
+            </p>
+            <p class="upsell-combo-ui__grand-total">$68.40</p>
+        </div>
+    </div>
+
+    <button type="button" class="upsell-combo-ui__button">ADD TO BAG</button>
+</div>

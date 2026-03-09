@@ -1937,6 +1937,224 @@ li.product__benefit {
   width: 1.4rem;
 }
 
+/* Upsell Combo UI */
+
+.upsell-combo-ui {
+  padding: 0;
+  margin-top: 1.4rem;
+}
+
+.upsell-combo-ui__title {
+  font-size: 2rem;
+  line-height: 1.5;
+  margin: 0 0 0.8rem;
+  padding: 0;
+}
+
+.upsell-combo-ui__item {
+  align-items: self-start;
+  background: #ffffff;
+  border-radius: 1.6rem;
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.9rem;
+  margin: 0.4rem 0;
+  position: relative;
+}
+
+.upsell-combo-ui__item + .upsell-combo-ui__item {
+  margin-top: 1.2rem;
+}
+
+.upsell-combo-ui__media {
+  flex: 0 0 7rem;
+}
+
+.upsell-combo-ui__image {
+  display: block;
+  height: auto;
+  width: 7rem;
+  max-width: 100%;
+}
+
+.upsell-combo-ui__name {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin: 0 0 0.8rem;
+}
+
+.upsell-combo-ui__price-line {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.upsell-combo-ui__price {
+  font-size: 1.4rem;
+  color: var(--color-foreground);
+  font-weight: 700;
+}
+ 
+.upsell-combo-ui__compare {
+  color: #A3A3A3;
+  font-size: 1.2rem;
+  text-decoration: line-through;
+} 
+
+.upsell-combo-ui__summary .upsell-combo-ui__compare {
+  font-size: 1.4rem
+}
+
+.upsell-combo-ui__discount {
+  color: #ec4d37;
+  font-size: 1rem;
+}
+
+.upsell-combo-ui__summary .upsell-combo-ui__discount {
+  font-size: 1.2rem
+}
+
+.upsell-combo-ui__plus {
+  align-items: center;
+  display: flex;
+  font-size: 1.8rem;  
+  margin: 0 auto;
+  width: 2.8rem;
+}
+
+.upsell-combo-ui__plus path {
+    fill: rgba(164, 163, 163, 1);
+}
+
+.upsell-combo-ui__check {
+  align-items: center;
+  color: #fff;
+  display: inline-flex;
+  font-size: 1.4rem;
+  justify-content: center;
+  position: absolute;
+  right: 0.8rem;
+  top: 0.8rem;
+}
+
+.upsell-combo-ui__summary {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.8rem;
+}
+
+.upsell-combo-ui__total-label {
+  font-family: var(--font-body-semibold-family);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.upsell-combo-ui__note {
+  font-size: 1.4rem;
+  margin: 0 0;
+  color: rgb(40, 40, 40);
+}
+
+.upsell-combo-ui__totals {
+  text-align: right;
+}
+
+.upsell-combo-ui__grand-total {
+  font-family: var(--font-body-semibold-family);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0.4rem 0 0;
+}
+
+.upsell-combo-ui__button {
+  font-family: var(--font-body-family);
+  background: #000;
+  border: 0;
+  border-radius: 5rem;
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-size: 1.4rem;
+  margin: 1.2rem 0;
+  min-height: 4.5rem;
+  padding: 1.2rem 2.4rem;
+  width: 100%;
+}
+
+.upsell-combo-card-checkbox-cont {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.upsell-combo-card-checkbox {
+  accent-color: #080a0c;
+  cursor: pointer;
+  margin: 0;
+  height: 1.8rem;
+  width: 1.8rem;
+}
+.upsell-combo-checkbox-cont {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.upsell-combo-checkbox-cont input {
+  opacity: 0 !important;
+}
+.upsell-combo-custom-checkbox {
+  transition: all 0.2s ease;
+  margin: 0;
+  border-radius: 0.4rem;
+  border: 1px solid #080a0c;
+  cursor: pointer;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.upsell-combo-checkbox-check {
+  position: absolute;
+  width: 170%;
+  max-width: unset !important;
+  height: 315%;
+  border-radius: 0.2rem;
+  white-space: nowrap;
+  border: solid white;
+  border-width: 0 1rem 1rem 0 !important;
+  transform: scale(0.2) translate(-100%, -180%) rotate(45deg);
+}
+.upsell-combo-checked {
+  background-color: #080a0c;
+  direction: ltr !important;
+}
+.upsell-combo-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.upsell-combo-card-checkbox-cont .upsell-combo-spinner {
+  height: 1.6rem;
+  width: 1.6rem;
+  border: 0.2rem solid #fff;
+  border-right-color: transparent !important;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+
 .recipient-fields hr {
   margin: 1.6rem auto;
 }
