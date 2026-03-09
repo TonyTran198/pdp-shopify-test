@@ -1,8 +1,6 @@
 .accordion summary {
   display: flex;
   position: relative;
-  line-height: 1;
-  padding: 1.5rem 0;
 }
 
 .accordion .summary__title {
@@ -22,16 +20,32 @@
 .accordion {
   margin-top: 2.5rem;
   margin-bottom: 0;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .accordion__title {
-  display: inline-block;
-  max-width: calc(100% - 6rem);
   min-height: 1.6rem;
   margin: 0;
   word-break: break-word;
+  align-items: center;
+  border-bottom: 0.1rem solid #9d9d9d;
+  cursor: pointer; 
+  display: flex;
+  font-family: var(--font-body-semibold-family);
+  font-size: 1.6rem;
+  justify-content: space-between;
+  letter-spacing: .016rem;
+  line-height: 2.2rem;
+  margin: 2.2rem 0 2rem;
+  padding: 1.1rem 2.7rem 1.1rem 0;
+  position: relative;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .accordion__title {
+    margin: 3rem 0;
+  }
 }
 
 .accordion .svg-wrapper {
