@@ -42,20 +42,26 @@
     {{ content_for_header }}
  
     {%- liquid
+      assign custom_body_font_file_url = settings.custom_body_font_file | strip
+      assign custom_body_secondary_font_file_url = settings.custom_body_font_secondary_file | strip
+      assign custom_body_semibold_font_file_url = settings.custom_body_font_semibold_file | strip
+      assign custom_body_bold_font_file_url = settings.custom_body_font_bold_file | strip
+      assign custom_heading_font_file_url = settings.custom_heading_font_file | strip
+
       assign use_custom_body_font = false
-      if settings.enable_custom_body_font and settings.custom_body_font_family != blank and settings.custom_body_font_file != blank
+      if settings.enable_custom_body_font and settings.custom_body_font_family != blank and custom_body_font_file_url != blank
         assign use_custom_body_font = true
       endif
 
       assign custom_body_font_format = 'woff2'
-      if settings.custom_body_font_file contains '.woff2'
+      if custom_body_font_file_url contains '.woff2'
         assign custom_body_font_format = 'woff2'
-      elsif settings.custom_body_font_file contains '.woff'
+      elsif custom_body_font_file_url contains '.woff'
         assign custom_body_font_format = 'woff'
       endif
 
       assign use_custom_body_secondary_font = false
-      if use_custom_body_font and settings.custom_body_font_secondary_file != blank
+      if use_custom_body_font and custom_body_secondary_font_file_url != blank
         assign use_custom_body_secondary_font = true
       endif
 
@@ -65,14 +71,14 @@
       endif
 
       assign custom_body_secondary_font_format = 'woff2'
-      if settings.custom_body_font_secondary_file contains '.woff2'
+      if custom_body_secondary_font_file_url contains '.woff2'
         assign custom_body_secondary_font_format = 'woff2'
-      elsif settings.custom_body_font_secondary_file contains '.woff'
+      elsif custom_body_secondary_font_file_url contains '.woff'
         assign custom_body_secondary_font_format = 'woff'
       endif
 
       assign use_custom_body_semibold_font = false
-      if use_custom_body_font and settings.custom_body_font_semibold_file != blank
+      if use_custom_body_font and custom_body_semibold_font_file_url != blank
         assign use_custom_body_semibold_font = true
       endif
 
@@ -82,14 +88,14 @@
       endif
 
       assign custom_body_semibold_font_format = 'woff2'
-      if settings.custom_body_font_semibold_file contains '.woff2'
+      if custom_body_semibold_font_file_url contains '.woff2'
         assign custom_body_semibold_font_format = 'woff2'
-      elsif settings.custom_body_font_semibold_file contains '.woff'
+      elsif custom_body_semibold_font_file_url contains '.woff'
         assign custom_body_semibold_font_format = 'woff'
       endif
 
       assign use_custom_body_bold_font = false
-      if use_custom_body_font and settings.custom_body_font_bold_file != blank
+      if use_custom_body_font and custom_body_bold_font_file_url != blank
         assign use_custom_body_bold_font = true
       endif
 
@@ -99,21 +105,21 @@
       endif
 
       assign custom_body_bold_font_format = 'woff2'
-      if settings.custom_body_font_bold_file contains '.woff2'
+      if custom_body_bold_font_file_url contains '.woff2'
         assign custom_body_bold_font_format = 'woff2'
-      elsif settings.custom_body_font_bold_file contains '.woff'
+      elsif custom_body_bold_font_file_url contains '.woff'
         assign custom_body_bold_font_format = 'woff'
       endif
 
       assign use_custom_heading_font = false
-      if settings.enable_custom_heading_font and settings.custom_heading_font_family != blank and settings.custom_heading_font_file != blank
+      if settings.enable_custom_heading_font and settings.custom_heading_font_family != blank and custom_heading_font_file_url != blank
         assign use_custom_heading_font = true
       endif
 
       assign custom_heading_font_format = 'woff2'
-      if settings.custom_heading_font_file contains '.woff2'
+      if custom_heading_font_file_url contains '.woff2'
         assign custom_heading_font_format = 'woff2'
-      elsif settings.custom_heading_font_file contains '.woff'
+      elsif custom_heading_font_file_url contains '.woff'
         assign custom_heading_font_format = 'woff'
       endif
 
@@ -126,7 +132,7 @@
       {% if use_custom_body_font %}
         @font-face {
           font-family: '{{ settings.custom_body_font_family | escape }}';
-          src: url('{{ settings.custom_body_font_file | asset_url }}') format('{{ custom_body_font_format }}');
+          src: url('{{ custom_body_font_file_url }}') format('{{ custom_body_font_format }}');
           font-weight: {{ settings.custom_body_font_weight }};
           font-style: normal;
           font-display: swap;
@@ -134,7 +140,7 @@
         {% if use_custom_body_secondary_font %}
           @font-face {
             font-family: '{{ custom_body_secondary_family | escape }}';
-            src: url('{{ settings.custom_body_font_secondary_file | asset_url }}') format('{{ custom_body_secondary_font_format }}');
+            src: url('{{ custom_body_secondary_font_file_url }}') format('{{ custom_body_secondary_font_format }}');
             font-weight: {{ settings.custom_body_font_secondary_weight }};
             font-style: normal;
             font-display: swap;
@@ -144,7 +150,7 @@
         {% if use_custom_body_semibold_font %}
           @font-face {
             font-family: '{{ settings.custom_body_font_semibold_family | escape }}';
-            src: url('{{ settings.custom_body_font_semibold_file | asset_url }}') format('{{ custom_body_semibold_font_format }}');
+            src: url('{{ custom_body_semibold_font_file_url }}') format('{{ custom_body_semibold_font_format }}');
             font-weight: {{ settings.custom_body_font_semibold_weight }};
             font-style: normal;
             font-display: swap;
@@ -153,7 +159,7 @@
         {% if use_custom_body_bold_font %}
           @font-face {
             font-family: '{{ custom_body_bold_family | escape }}';
-            src: url('{{ settings.custom_body_font_bold_file | asset_url }}') format('{{ custom_body_bold_font_format }}');
+            src: url('{{ custom_body_bold_font_file_url }}') format('{{ custom_body_bold_font_format }}');
             font-weight: {{ settings.custom_body_font_bold_weight }};
             font-style: normal;
             font-display: swap;
@@ -169,7 +175,7 @@
       {% if use_custom_heading_font %}
         @font-face {
           font-family: '{{ settings.custom_heading_font_family | escape }}';
-          src: url('{{ settings.custom_heading_font_file | asset_url }}') format('{{ custom_heading_font_format }}');
+          src: url('{{ custom_heading_font_file_url }}') format('{{ custom_heading_font_format }}');
           font-weight: {{ settings.custom_heading_font_weight }};
           font-style: normal;
           font-display: swap;
@@ -393,38 +399,18 @@
       {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
 
-    {%- if use_custom_body_font -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.custom_body_font_file | asset_url }}" type="font/{{ custom_body_font_format }}" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
-      {%- if use_custom_body_semibold_font -%}
-        {% comment %}theme-check-disable AssetPreload{% endcomment %}
-        <link rel="preload" as="font" href="{{ settings.custom_body_font_semibold_file | asset_url }}" type="font/{{ custom_body_semibold_font_format }}" crossorigin>
-        {% comment %}theme-check-enable AssetPreload{% endcomment %}
-      {%- endif -%}
-      {%- if use_custom_body_secondary_font -%}
-        {% comment %}theme-check-disable AssetPreload{% endcomment %}
-        <link rel="preload" as="font" href="{{ settings.custom_body_font_secondary_file | asset_url }}" type="font/{{ custom_body_secondary_font_format }}" crossorigin>
-        {% comment %}theme-check-enable AssetPreload{% endcomment %}
-      {%- endif -%}
-    {%- else -%}
       {%- unless settings.type_body_font.system? -%}
         {% comment %}theme-check-disable AssetPreload{% endcomment %}
         <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
         {% comment %}theme-check-enable AssetPreload{% endcomment %}
       {%- endunless -%}
-    {%- endif -%}
-    {%- if use_custom_heading_font -%}
-      {% comment %}theme-check-disable AssetPreload{% endcomment %}
-      <link rel="preload" as="font" href="{{ settings.custom_heading_font_file | asset_url }}" type="font/{{ custom_heading_font_format }}" crossorigin>
-      {% comment %}theme-check-enable AssetPreload{% endcomment %}
-    {%- else -%}
+
       {%- unless settings.type_header_font.system? -%}
         {% comment %}theme-check-disable AssetPreload{% endcomment %}
         <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
         {% comment %}theme-check-enable AssetPreload{% endcomment %}
       {%- endunless -%}
-    {%- endif -%}
+
 
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}

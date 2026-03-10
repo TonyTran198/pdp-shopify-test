@@ -2161,6 +2161,7 @@ input[type='checkbox'] {
 }
 
 .announcement-bar__message {
+  font-size: 1.4rem;
   text-align: center;
   padding: 0rem 0;
   margin: 0;
@@ -2230,7 +2231,7 @@ input[type='checkbox'] {
 
 /* section-header */
 .section-header.shopify-section-group-header-group {
-  z-index: 3;
+  z-index: 11;
 }
 
 .shopify-section-header-sticky {
