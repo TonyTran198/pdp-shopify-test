@@ -1828,7 +1828,7 @@ input[type='checkbox'] {
   display: flex;
   border-radius: var(--inputs-radius);
   padding: 0.8rem 2.2rem;
-  min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
+  min-height: 4.8rem;
 }
 
 .quantity__input {
@@ -2162,10 +2162,13 @@ input[type='checkbox'] {
 
 .announcement-bar__message {
   text-align: center;
-  padding: 1rem 0;
+  padding: 0rem 0;
   margin: 0;
-  letter-spacing: 0.1rem;
-  min-height: 3.8rem;
+  letter-spacing: .1rem;
+  line-height: 1;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
 }
 
 .announcement-bar-slider--fade-in-next .announcement-bar__message,

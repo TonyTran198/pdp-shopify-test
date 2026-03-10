@@ -46,3 +46,7 @@
 .video-section__media.media-fit-cover video {
   object-fit: cover;
 }
+
+.video-section__media svg path{
+  fill: var(--color-black);
+}

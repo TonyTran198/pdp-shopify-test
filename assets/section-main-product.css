@@ -273,11 +273,12 @@ product-info {
 
 .product__info-container .product__description,
 .product__info-container .icon-with-text {
+  font-size: 1.6rem;
   margin: 2.5rem 0;
 }
 
 .product__text {
-  margin-bottom: 0;
+  margin-bottom: 1.9rem;
 }
 
 a.product__text {
@@ -1903,7 +1904,7 @@ li.product__benefit {
   display: flex;
   font-size: 1.4rem;
   margin-top: 0.5rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: 3.6rem;
   flex-wrap: wrap;
   gap: 0.4rem;
   line-height: 1.4;
@@ -1941,10 +1942,12 @@ li.product__benefit {
 
 .upsell-combo-ui {
   padding: 0;
-  margin-top: 1.4rem;
+  margin-top: 2.8rem;
+  margin-bottom: 2.6rem;
 }
 
 .upsell-combo-ui__title {
+  font-family: var(--font-body-semibold-family);
   font-size: 2rem;
   line-height: 1.5;
   margin: 0 0 0.8rem;
@@ -2004,6 +2007,10 @@ li.product__benefit {
 
 .upsell-combo-ui__summary .upsell-combo-ui__compare {
   font-size: 1.4rem
+}
+
+.upsell-combo-ui__summary .upsell-combo-ui__summary-left {
+  max-width: 11.3rem;
 }
 
 .upsell-combo-ui__discount {
@@ -2293,7 +2300,7 @@ li.product__benefit {
 
 .subscription-ui__plans {
   display: grid;
-  gap: 0.8rem;
+  gap: 1.2rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: auto;
 }

@@ -50,10 +50,24 @@
                   <source src="{{ block.settings.video_url | escape }}" type="video/mp4">
                 </video>
               {%- elsif block.settings.image != blank -%}
+                {%- liquid
+                  assign image_alt = block.settings.image.alt
+                  if image_alt == blank
+                    assign image_alt_base = section.settings.image_alt_fallback
+                    if image_alt_base == blank
+                      assign image_alt_base = 'Video'
+                    endif
+                    assign image_alt = image_alt_base | append: ' ' | append: forloop.index
+                  endif
+                -%}
                 {{
                   block.settings.image
                   | image_url: width: 480
-                  | image_tag: loading: 'lazy', widths: '220, 320, 480', class: 'video-slider-swiper__image'
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '220, 320, 480',
+                    class: 'video-slider-swiper__image',
+                    alt: image_alt
                 }}
               {%- endif -%}
             </article>
@@ -81,6 +95,12 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-2"
+    },
+    {
+      "type": "text",
+      "id": "image_alt_fallback",
+      "label": "Image alt fallback",
+      "default": "Video"
     },
     {
       "type": "header",
